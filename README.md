@@ -71,5 +71,16 @@ ReWow Pet is a full-stack web application for managing pet medical records and s
 - Log in as admin to access and manage medical records.
 - All API requests from the frontend are authenticated using JWT.
 
+## Screen shots
+### Front
+<img width="1022" height="363" alt="image" src="https://github.com/user-attachments/assets/65c3bfdd-cdcd-43c9-a072-c5db6eeed02f" />
+<img width="892" height="333" alt="image" src="https://github.com/user-attachments/assets/87a22665-27d4-4684-8279-9a2141e4ce46" />
+<img width="1259" height="647" alt="image" src="https://github.com/user-attachments/assets/ab4df531-72c6-415a-80cb-e5b37a625e8e" />
+
+
+### Swagger client
+<img width="989" height="473" alt="image" src="https://github.com/user-attachments/assets/bff85e76-2283-4897-8cd6-7a5aab2ac7c5" />
+
+
 ## License
 This project is for educational/demo purposes.
