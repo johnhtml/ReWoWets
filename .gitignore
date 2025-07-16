@@ -1,0 +1,126 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+
+# ---- .NET / Visual Studio ----
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# NuGet
+*.nupkg
+# NuGet Symbol Packages
+*.snupkg
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Others
+*.log
+*.tlog
+*.cache
+*.pdb
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.bak
+*.tmp
+*.swp
+*.sln.docstates
+
+# Docker
+**/Dockerfile*
+
+# Local environment
+.env
+.env.*
+
+# ---- Angular / Node ----
+rewow-pet-frontend/node_modules/
+rewow-pet-frontend/dist/
+rewow-pet-frontend/tmp/
+rewow-pet-frontend/out-tsc/
+rewow-pet-frontend/bazel-out/
+rewow-pet-frontend/.angular/cache
+rewow-pet-frontend/.sass-cache/
+rewow-pet-frontend/coverage/
+rewow-pet-frontend/libpeerconnection.log
+rewow-pet-frontend/testem.log
+rewow-pet-frontend/typings/
+rewow-pet-frontend/.history/
+
+# IDEs and editors
+rewow-pet-frontend/.idea/
+rewow-pet-frontend/.project
+rewow-pet-frontend/.classpath
+rewow-pet-frontend/.c9/
+rewow-pet-frontend/*.launch
+rewow-pet-frontend/.settings/
+rewow-pet-frontend/*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# ---- General ----
+*.bak
+*.old
+*.orig
+*.swp
+*.swn
+*.swo
+*.tmp
+*.temp
+
+# ---- End of .gitignore ---- 

@@ -1,0 +1,164 @@
+<h2>Medical Record</h2>
+<div class="row">
+  <div class="col-md-4">
+    <h4>Pet Owners</h4>
+    <button class="btn btn-primary btn-sm mb-2" (click)="newOwner()">Add Owner</button>
+    <ul class="list-group">
+      <li *ngFor="let owner of petOwners" class="list-group-item d-flex justify-content-between align-items-center" [class.active]="selectedOwner?.id === owner.id" (click)="selectOwner(owner)">
+        <span>{{ owner.name }}</span>
+        <span>
+          <button class="btn btn-sm btn-secondary me-1" (click)="$event.stopPropagation(); editOwner(owner)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="$event.stopPropagation(); deleteOwner(owner)">Delete</button>
+        </span>
+      </li>
+    </ul>
+    <form *ngIf="showOwnerForm" [formGroup]="ownerForm" (ngSubmit)="saveOwner()" class="mt-3">
+      <div class="mb-2">
+        <label class="form-label">Owner Name</label>
+        <input class="form-control" formControlName="name" required />
+      </div>
+      <button class="btn btn-success btn-sm" type="submit" [disabled]="ownerForm.invalid">Save</button>
+      <button class="btn btn-link btn-sm" type="button" (click)="showOwnerForm = false">Cancel</button>
+    </form>
+  </div>
+  <div class="col-md-8" *ngIf="selectedOwner">
+    <h4>Pets of {{ selectedOwner.name }}</h4>
+    <button class="btn btn-primary btn-sm mb-2" (click)="newPet(selectedOwner)">Add Pet</button>
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Size</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pet of selectedOwner.pets">
+          <td (click)="selectPet(pet)" style="cursor:pointer">{{ pet.name }}</td>
+          <td>{{ pet.type }}</td>
+          <td>{{ pet.size }}</td>
+          <td>{{ pet.description }}</td>
+          <td>
+            <button class="btn btn-sm btn-secondary me-1" (click)="editPet(pet)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deletePet(pet)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form *ngIf="showPetForm" [formGroup]="petForm" (ngSubmit)="savePet()" class="mt-3">
+      <div class="mb-2">
+        <label class="form-label">Pet Name</label>
+        <input class="form-control" formControlName="name" required />
+      </div>
+      <div class="mb-2">
+        <label class="form-label">Type</label>
+        <select class="form-select" formControlName="type" required>
+          <option value="">Select type</option>
+          <option value="Cat">Cat</option>
+          <option value="Dog">Dog</option>
+          <option value="Fish">Fish</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="mb-2">
+        <label class="form-label">Size</label><br />
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="size" value="Small" />
+          <label class="form-check-label">Small</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="size" value="Medium" />
+          <label class="form-check-label">Medium</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="size" value="Big" />
+          <label class="form-check-label">Big</label>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" formControlName="description"></textarea>
+      </div>
+      <button class="btn btn-success btn-sm" type="submit" [disabled]="petForm.invalid">Save</button>
+      <button class="btn btn-link btn-sm" type="button" (click)="showPetForm = false">Cancel</button>
+    </form>
+    
+    <div *ngIf="selectedPet">
+      <h5>Vaccinations of {{ selectedPet.name }}</h5>
+      <button class="btn btn-outline-primary btn-sm mb-2" (click)="newVaccination(selectedPet)">Add Vaccination</button>
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vac of selectedPet.vaccinations">
+            <td>{{ vac.number }}</td>
+            <td>{{ vac.type }}</td>
+            <td>{{ vac.date | date:'yyyy-MM-dd' }}</td>
+            <td>
+              <button class="btn btn-sm btn-secondary me-1" (click)="editVaccination(vac)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteVaccination(vac)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <form *ngIf="showVaccinationForm" [formGroup]="vaccinationForm" (ngSubmit)="saveVaccination()" class="mb-3">
+        <div class="mb-2">
+          <label class="form-label">Number</label>
+          <input class="form-control" formControlName="number" required />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Type</label>
+          <input class="form-control" formControlName="type" required />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Date</label>
+          <input class="form-control" type="date" formControlName="date" required />
+        </div>
+        <button class="btn btn-success btn-sm" type="submit" [disabled]="vaccinationForm.invalid">Save</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="showVaccinationForm = false">Cancel</button>
+      </form>
+      
+      <h5>Medical Services of {{ selectedPet.name }}</h5>
+      <button class="btn btn-outline-primary btn-sm mb-2" (click)="newMedicalService(selectedPet)">Add Medical Service</button>
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Service Type</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let svc of selectedPet.medicalServices">
+            <td>{{ svc.serviceType }}</td>
+            <td>{{ svc.date | date:'yyyy-MM-dd' }}</td>
+            <td>
+              <button class="btn btn-sm btn-secondary me-1" (click)="editMedicalService(svc)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteMedicalService(svc)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <form *ngIf="showMedicalServiceForm" [formGroup]="medicalServiceForm" (ngSubmit)="saveMedicalService()" class="mb-3">
+        <div class="mb-2">
+          <label class="form-label">Service Type</label>
+          <input class="form-control" formControlName="serviceType" required />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Date</label>
+          <input class="form-control" type="date" formControlName="date" required />
+        </div>
+        <button class="btn btn-success btn-sm" type="submit" [disabled]="medicalServiceForm.invalid">Save</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="showMedicalServiceForm = false">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
